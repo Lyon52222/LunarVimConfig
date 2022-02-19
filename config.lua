@@ -9,9 +9,12 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
+vim.opt.wrap = true
+vim.opt.relativenumber = true
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+-- lvim.colorscheme = "onedarker"
+lvim.colorscheme = "tokyonight"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -138,11 +141,11 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-    -- {"folke/tokyonight.nvim"},
-    -- {
-    --   "folke/trouble.nvim",
-    --   cmd = "TroubleToggle",
-    -- },
+    { "folke/tokyonight.nvim" },
+    {
+      "folke/trouble.nvim",
+      cmd = "TroubleToggle",
+    },
     {
       "npxbr/glow.nvim",
       ft = { "markdown" }
@@ -183,6 +186,39 @@ lvim.plugins = {
           require("autosave").setup({ debounce_delay = 500 })
       end,
     },
+    {
+      "andymass/vim-matchup",
+      event = "CursorMoved",
+      config = function()
+          vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      end,
+    },
+    -- {
+    --   "windwp/nvim-spectre",
+    --   event = "BufRead",
+    --   config = function()
+    --     require("spectre").setup()
+    --   end,
+    -- },
+    {
+      "rmagatti/goto-preview",
+      config = function()
+          require('goto-preview').setup {
+            width = 120; -- Width of the floating window
+            height = 25; -- Height of the floating window
+            default_mappings = true; -- Bind default mappings
+            debug = false; -- Print debug information
+            opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+            post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+            -- You can use "default_mappings = true" setup option
+            -- Or explicitly set keybindings
+            -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+            -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+            -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+          }
+      end
+    },
+
 }
 
 
