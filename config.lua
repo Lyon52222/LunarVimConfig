@@ -16,6 +16,10 @@ lvim.format_on_save = true
 -- lvim.colorscheme = "onedarker"
 lvim.colorscheme = "tokyonight"
 
+vim.cmd("set tabstop=4")
+vim.cmd("set shiftwidth=4")
+-- require("luasnip.loaders.from_snipmate").lazy_load()
+
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
@@ -57,7 +61,8 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -65,6 +70,7 @@ lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
+  "cpp",
   "bash",
   "c",
   "javascript",
@@ -180,12 +186,12 @@ lvim.plugins = {
           require("todo-comments").setup()
       end,
     },
-    {
-      "Pocco81/AutoSave.nvim",
-      config = function()
-          require("autosave").setup({ debounce_delay = 500 })
-      end,
-    },
+    -- {
+    --   "Pocco81/AutoSave.nvim",
+    --   config = function()
+    --       require("autosave").setup({ debounce_delay = 500 })
+    --   end,
+    -- },
     {
       "andymass/vim-matchup",
       event = "CursorMoved",
@@ -236,6 +242,19 @@ lvim.plugins = {
             post_hook = nil, -- Function to run after the scrolling animation ends
           })
       end
+    },
+    {
+      "ethanholz/nvim-lastplace",
+      event = "BufRead",
+      config = function()
+          require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+        lastplace_ignore_filetype = {
+         "gitcommit", "gitrebase", "svn", "hgcommit",
+        },
+        lastplace_open_folds = true,
+          })
+      end,
     },
     { "lervag/vimtex" },
     -- { "sirver/ultisnips" },
