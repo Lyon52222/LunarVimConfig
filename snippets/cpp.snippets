@@ -7,6 +7,7 @@ snippet setup
 	#include<iostream>
 	using namespace std;
 	int main(){
+		${1}
 		return 0;
 	}
 
@@ -243,41 +244,43 @@ snippet gcd
 
 # 扩展欧几里得
 snippet exgcd
-	int exgcd(int a, int b, int& x, int& y){
-		if(b == 0){
+	int exgcd(int a, int b, int &x, int &y) {
+		if (b == 0) {
 			x = 1;
 			y = 0;
 			return a;
 		}
-		int d = exgcd(b, a%b, y, x);
-		y -= a/b*x;
+		int d = exgcd(b, a % b, y, x);
+		y -= a / b * x;
 		return d;
 	}
 
-# 乘法逆元
+# # 乘法逆元
 snippet inv
-	int inv(int a, int MOD){
-		int x,y;
+	int inv(int a, int MOD) {
+		int x, y;
 		exgcd(a, MOD, x, y);
 		x = (x % MOD + MOD) % MOD;
 		return x;
 	}
 
-# 快速幂
-snippets fpow
-	int pow(int a, int b, int MOD){
+# # 快速幂
+snippet fpow
+	int pow(int a, int b, int MOD) {
 		int ret = 1;
 		a %= MOD;
-		while(b){
-			if(b&1) ret = (ll)ret*a%MOD;
-			a = (ll)a*a%MOD;
+		while (b) {
+			if (b & 1)
+				ret = (ll)ret * a % MOD;
+			a = (ll)a * a % MOD;
 			b >>= 1;
 		}
 	}
 
-# 组合数
+# # 组合数
 snippet C
-	int C(int n, int m){
-		if(m == 0) return 1;
-		return C(n, m-1)*(n-m+1)/m;
+	int C(int n, int m) {
+		if (m == 0)
+			return 1;
+		return C(n, m - 1) * (n - m + 1) / m;
 	}
