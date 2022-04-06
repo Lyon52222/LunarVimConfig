@@ -18,7 +18,7 @@ lvim.colorscheme = "tokyonight"
 
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
--- require("luasnip.loaders.from_snipmate").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
