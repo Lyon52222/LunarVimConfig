@@ -15,6 +15,7 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 lvim.log.level = "warn"
 lvim.format_on_save = true
+lvim.keys.insert_mode["jj"] = false
 -- lvim.colorscheme = "onedarker"
 lvim.colorscheme = "tokyonight"
 
