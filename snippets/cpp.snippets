@@ -284,3 +284,46 @@ snippet C
 			return 1;
 		return C(n, m - 1) * (n - m + 1) / m;
 	}
+
+# 一维递推
+snippet Initc
+	int c[N + 2];
+	void Initc() {
+		c[0] = 1;
+		for (int i = 1; i <= N; i++) {
+			c[i] = c[i - 1] * (N - i + 1) / i;
+		}
+	}
+
+# 二维递推
+snippet InitC
+	int c[N + 2][N + 2];
+	void InitC() {
+		memset(c, 0, sizeof(c));
+		c[0][0] = 1;
+		for (int i = 1; i <= N; i++) {
+			c[i][0] = c[i][i] = 1;
+			for (int j = 1; j < i; j++)
+				c[i][j] = c[i - 1][j - 1] + c[i - 1][j];
+		}
+	}
+
+# 字符串分割
+snippet split
+	vector<string> split(string str, char pattern) {
+		vector<string> result;
+		int start = 0;
+		int size = str.size();
+		for (int i = 0; i < size; i++) {
+			if (str[i] == pattern) {
+				string s = str.substr(start, i - start);
+				result.push_back(s);
+				start = i + 1;
+			}
+		}
+		string s = str.substr(start, size - start);
+		result.push_back(s);
+		return result;
+	}
+
+
