@@ -11,13 +11,13 @@ an executable
 -- general
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "onedarker"
 lvim.colorscheme = "tokyonight"
 
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
 require("luasnip.loaders.from_snipmate").lazy_load()
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -257,6 +257,10 @@ lvim.plugins = {
       end,
     },
     { "lervag/vimtex" },
+    {
+      "simrat39/symbols-outline.nvim",
+      cmd = "SymbolsOutline",
+    },
     -- { "sirver/ultisnips" },
 
 }
