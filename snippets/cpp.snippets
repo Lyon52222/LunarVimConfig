@@ -4,9 +4,16 @@ extends c
 ## Preprocessor
 # setup
 snippet setup
-	#include<iostream>
+	#include <cstdio>
+	#include <fstream>
+	#include <iostream>
 	using namespace std;
-	int main(){
+
+	int main() {
+		freopen("in.txt", "r", stdin);
+		ifstream mcin("in.txt");
+		cin.rdbuf(mcin.rdbuf());
+		int a, b;
 		${0}
 		return 0;
 	}
