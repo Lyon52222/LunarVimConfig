@@ -13,6 +13,7 @@ vim.opt.wrap = true
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.conceallevel = 1
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.keys.insert_mode["jj"] = false
@@ -264,7 +265,7 @@ lvim.plugins = {
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
     },
-    -- { "sirver/ultisnips" },
+    { "SirVer/ultisnips" },
 
 }
 
