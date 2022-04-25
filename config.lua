@@ -266,6 +266,7 @@ lvim.plugins = {
         cmd = "SymbolsOutline",
     },
     { "SirVer/ultisnips" },
+    { 'michaelb/sniprun', run = 'bash ./install.sh' },
 
 }
 
