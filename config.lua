@@ -53,11 +53,20 @@ lvim.keys.insert_mode["kj"] = false
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-lvim.builtin.which_key.mappings["t"] = {
+lvim.builtin.which_key.mappings["D"] = {
     name = "+Todo",
     q = { "<cmd>TodoQuickFix<cr>", "TodoQuickFix" },
     l = { "<cmd>TodoLocList<cr>", "TodoLocList" },
     t = { "<cmd>TodoTelescope<cr>", "TodoTelescope" },
+}
+lvim.builtin.which_key.mappings["t"] = {
+    name = "+Diagnostics",
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+    r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
 
 lvim.builtin.which_key.mappings["o"] = {
@@ -273,6 +282,13 @@ lvim.plugins = {
     },
     {
         "p00f/nvim-ts-rainbow",
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                rainbow = {
+                    enable = true,
+                }
+            }
+        end
     },
     {
         "ray-x/lsp_signature.nvim",
@@ -282,6 +298,28 @@ lvim.plugins = {
         end
     },
     { "kosayoda/nvim-lightbulb" },
+    {
+        "romgrk/nvim-treesitter-context",
+        config = function()
+            require("treesitter-context").setup {
+                enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+                throttle = true, -- Throttles plugin updates (may improve performance)
+                max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+                patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+                    -- For all filetypes
+                    -- Note that setting an entry here replaces all other patterns for this entry.
+                    -- By setting the 'default' entry below, you can control which nodes you want to
+                    -- appear in the context window.
+                    default = {
+                        'class',
+                        'function',
+                        'method',
+                    },
+                },
+            }
+        end
+    },
+
 
 }
 
