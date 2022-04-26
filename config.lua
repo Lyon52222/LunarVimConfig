@@ -16,9 +16,6 @@ vim.opt.tabstop = 4
 vim.opt.conceallevel = 1
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.keys.insert_mode["jj"] = false
-lvim.keys.insert_mode["jk"] = false
-lvim.keys.insert_mode["kj"] = false
 -- lvim.colorscheme = "onedarker"
 lvim.colorscheme = "tokyonight"
 
@@ -28,6 +25,9 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.insert_mode["jj"] = false
+lvim.keys.insert_mode["jk"] = false
+lvim.keys.insert_mode["kj"] = false
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -53,15 +53,24 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
--- lvim.builtin.which_key.mappings["t"] = {
---   name = "+Trouble",
---   r = { "<cmd>Trouble lsp_references<cr>", "References" },
---   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
---   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
---   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
--- }
+lvim.builtin.which_key.mappings["t"] = {
+    name = "+Todo",
+    q = { "<cmd>TodoQuickFix<cr>", "TodoQuickFix" },
+    l = { "<cmd>TodoLocList<cr>", "TodoLocList" },
+    t = { "<cmd>TodoTelescope<cr>", "TodoTelescope" },
+}
+
+lvim.builtin.which_key.mappings["S"] = {
+    "<cmd>SymbolsOutline<cr>", "SymbolsOutline"
+}
+
+lvim.builtin.which_key.mappings["r"] = {
+    name = "+Replace",
+    a = { "<cmd>lua require('spectre').open()<cr>", "replace in all file" },
+    f = { "<cmd>lua require('spectre').open_file_search()<cr>", "replace in current file" },
+    w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "replace current word" }
+}
+
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -190,12 +199,6 @@ lvim.plugins = {
             require("todo-comments").setup()
         end,
     },
-    -- {
-    --   "Pocco81/AutoSave.nvim",
-    --   config = function()
-    --       require("autosave").setup({ debounce_delay = 500 })
-    --   end,
-    -- },
     {
         "andymass/vim-matchup",
         event = "CursorMoved",
@@ -203,13 +206,6 @@ lvim.plugins = {
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
     },
-    -- {
-    --   "windwp/nvim-spectre",
-    --   event = "BufRead",
-    --   config = function()
-    --     require("spectre").setup()
-    --   end,
-    -- },
     {
         "rmagatti/goto-preview",
         config = function()
