@@ -268,6 +268,23 @@ lvim.plugins = {
     { "SirVer/ultisnips" },
     { 'michaelb/sniprun', run = 'bash ./install.sh' },
     { "tpope/vim-repeat" },
+    {
+        "windwp/nvim-spectre",
+        event = "BufRead",
+        config = function()
+            require("spectre").setup()
+        end,
+    },
+    {
+        "p00f/nvim-ts-rainbow",
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function()
+            require "lsp_signature".setup()
+        end
+    },
 
 }
 
