@@ -267,6 +267,7 @@ lvim.plugins = {
     },
     { "SirVer/ultisnips" },
     { 'michaelb/sniprun', run = 'bash ./install.sh' },
+    { "tpope/vim-repeat" },
 
 }
 
