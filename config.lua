@@ -60,7 +60,7 @@ lvim.builtin.which_key.mappings["t"] = {
     t = { "<cmd>TodoTelescope<cr>", "TodoTelescope" },
 }
 
-lvim.builtin.which_key.mappings["S"] = {
+lvim.builtin.which_key.mappings["o"] = {
     "<cmd>SymbolsOutline<cr>", "SymbolsOutline"
 }
 
@@ -281,6 +281,7 @@ lvim.plugins = {
             require "lsp_signature".setup()
         end
     },
+    { "kosayoda/nvim-lightbulb" },
 
 }
 
