@@ -53,6 +53,10 @@ lvim.keys.insert_mode["kj"] = false
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["C"] = {
+    "<cmd>DogeGenerate<cr>", "GenerateComment"
+}
+
 lvim.builtin.which_key.mappings["D"] = {
     name = "+Todo",
     q = { "<cmd>TodoQuickFix<cr>", "TodoQuickFix" },
@@ -169,25 +173,36 @@ lvim.lsp.automatic_servers_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
-    { "folke/tokyonight.nvim" },
-    {
+    { --tokyonight主题
+        "folke/tokyonight.nvim" },
+    { --问题列表
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
     },
-    {
+    { --Markdown预览
         "npxbr/glow.nvim",
         ft = { "markdown" }
     },
-    {
+    { --增强文件搜索与跳转
         "phaazon/hop.nvim",
         event = "BufRead",
         config = function()
             require("hop").setup()
             vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
             vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+            -- place this in one of your configuration file(s)
+            vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+            vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+            vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+            vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+            -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
+            -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
+            -- vim.api.nvim_set_keymap('n', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", {})
+            -- vim.api.nvim_set_keymap('v', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", {})
+            -- vim.api.nvim_set_keymap('o', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END, inclusive_jump = true })<cr>", {})
         end,
     },
-    {
+    { --快速跳转到某一行
         "nacro90/numb.nvim",
         event = "BufRead",
         config = function()
@@ -197,25 +212,25 @@ lvim.plugins = {
             }
         end,
     },
-    {
+    { --快速改变周围环境
         "tpope/vim-surround",
         keys = { "c", "d", "y" },
     },
-    {
+    { --标记TODO
         "folke/todo-comments.nvim",
         event = "BufRead",
         config = function()
             require("todo-comments").setup()
         end,
     },
-    {
+    { --使用%跳转到对应的括号，if等
         "andymass/vim-matchup",
         event = "CursorMoved",
         config = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
     },
-    {
+    { --预览goto
         "rmagatti/goto-preview",
         config = function()
             require('goto-preview').setup {
@@ -233,7 +248,7 @@ lvim.plugins = {
             }
         end
     },
-    {
+    { --更加平滑的翻页
         "karb94/neoscroll.nvim",
         event = "WinScrolled",
         config = function()
@@ -252,7 +267,7 @@ lvim.plugins = {
             })
         end
     },
-    {
+    { --回到上次编辑的位置
         "ethanholz/nvim-lastplace",
         event = "BufRead",
         config = function()
@@ -265,22 +280,26 @@ lvim.plugins = {
             })
         end,
     },
-    { "lervag/vimtex" },
-    {
+    { -- latex编译
+        "lervag/vimtex" },
+    { --显示文件大纲
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
     },
-    { "SirVer/ultisnips" },
-    { 'michaelb/sniprun', run = 'bash ./install.sh' },
-    { "tpope/vim-repeat" },
-    {
+    { --Snips,主要用于自动扩展使用
+        "SirVer/ultisnips" },
+    { --直接运行代码片段
+        'michaelb/sniprun', run = 'bash ./install.sh' },
+    { --使用增强.重复操作
+        "tpope/vim-repeat" },
+    { --查找和替换
         "windwp/nvim-spectre",
         event = "BufRead",
         config = function()
             require("spectre").setup()
         end,
     },
-    {
+    { --彩虹括号
         "p00f/nvim-ts-rainbow",
         config = function()
             require("nvim-treesitter.configs").setup {
@@ -290,15 +309,16 @@ lvim.plugins = {
             }
         end
     },
-    {
+    { --提示函数参数
         "ray-x/lsp_signature.nvim",
         event = "BufRead",
         config = function()
             require "lsp_signature".setup()
         end
     },
-    { "kosayoda/nvim-lightbulb" },
-    {
+    { --code action
+        "kosayoda/nvim-lightbulb" },
+    { --在第一行显示当前行所在的函数名，类名
         "romgrk/nvim-treesitter-context",
         config = function()
             require("treesitter-context").setup {
@@ -319,10 +339,13 @@ lvim.plugins = {
             }
         end
     },
-
-
+    { --快速添加函数注释，类注释
+        "kkoomen/vim-doge" },
 }
 
+
+-- require('dap.dap-cpp')
+-- require('dap.di-cpp')
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
