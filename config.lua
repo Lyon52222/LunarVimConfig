@@ -57,6 +57,12 @@ lvim.builtin.which_key.mappings["C"] = {
     "<cmd>DogeGenerate<cr>", "GenerateComment"
 }
 
+lvim.builtin.which_key.mappings["S"] = {
+    name = "+SnipRun",
+    r = { "<cmd>SnipRun<cr>", "RunCode" },
+    c = { "<cmd>SnipClose<cr>", "Clean" },
+}
+
 lvim.builtin.which_key.mappings["D"] = {
     name = "+Todo",
     q = { "<cmd>TodoQuickFix<cr>", "TodoQuickFix" },
@@ -341,6 +347,8 @@ lvim.plugins = {
     },
     { --快速添加函数注释，类注释
         "kkoomen/vim-doge" },
+    { "theHamsta/nvim-dap-virtual-text" },
+    { "rcarriga/nvim-dap-ui" },
 }
 
 
