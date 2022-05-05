@@ -347,9 +347,6 @@ lvim.plugins = {
     },
     { --快速添加函数注释，类注释
         "kkoomen/vim-doge" },
-    { --自动补全buffer
-        "hrsh7th/cmp-buffer"
-    },
     { --自动补全cmd
         "hrsh7th/cmp-cmdline"
     },
