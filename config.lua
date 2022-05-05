@@ -11,9 +11,14 @@ an executable
 -- general
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.conceallevel = 1
+vim.opt.fileencoding = "utf-8" -- the encoding written to a file
+vim.opt.smartindent = true -- make indenting smarter again
+vim.opt.scrolloff = 8 -- is one of my fav
+vim.opt.sidescrolloff = 8
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "onedarker"
@@ -108,12 +113,12 @@ lvim.builtin.treesitter.ensure_installed = {
     "javascript",
     "json",
     "lua",
+    "go",
     "python",
     "typescript",
     "tsx",
     "css",
     "rust",
-    "java",
     "yaml",
 }
 
