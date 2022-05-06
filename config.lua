@@ -353,7 +353,19 @@ lvim.plugins = {
     { --快速添加函数注释，类注释
         "kkoomen/vim-doge" },
     { --自动补全cmd
-        "hrsh7th/cmp-cmdline"
+        "hrsh7th/cmp-cmdline",
+        config = function()
+            require 'cmp'.setup.cmdline(':', {
+                sources = {
+                    { name = 'cmdline' }
+                },
+            })
+            require 'cmp'.setup.cmdline('/', {
+                sources = {
+                    { name = 'buffer' }
+                }
+            })
+        end
     },
     { "theHamsta/nvim-dap-virtual-text" },
     { "rcarriga/nvim-dap-ui" },
