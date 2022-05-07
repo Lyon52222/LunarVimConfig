@@ -62,7 +62,7 @@ lvim.builtin.which_key.mappings["C"] = {
     "<cmd>DogeGenerate<cr>", "GenerateComment"
 }
 
-lvim.builtin.which_key.mappings["S"] = {
+lvim.builtin.which_key.mappings["R"] = {
     name = "+SnipRun",
     r = { "<cmd>SnipRun<cr>", "RunCode" },
     c = { "<cmd>SnipClose<cr>", "Clean" },
