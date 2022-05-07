@@ -66,6 +66,9 @@ lvim.builtin.which_key.mappings["S"] = {
     name = "+SnipRun",
     r = { "<cmd>SnipRun<cr>", "RunCode" },
     c = { "<cmd>SnipClose<cr>", "Clean" },
+    -- R = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+    -- l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+    -- Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
 }
 
 lvim.builtin.which_key.mappings["D"] = {
@@ -86,6 +89,10 @@ lvim.builtin.which_key.mappings["t"] = {
 
 lvim.builtin.which_key.mappings["o"] = {
     "<cmd>SymbolsOutline<cr>", "SymbolsOutline"
+}
+
+lvim.builtin.which_key.mappings["Q"] = {
+    "<cmd>wa<cr><cmd>qa<cr>", "SaveAndQuitAll"
 }
 
 lvim.builtin.which_key.mappings["r"] = {
@@ -350,6 +357,17 @@ lvim.plugins = {
             }
         end
     },
+    -- {
+    --     "folke/persistence.nvim",
+    --     event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    --     module = "persistence",
+    --     config = function()
+    --         require("persistence").setup {
+    --             dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+    --             options = { "buffers", "curdir", "tabpages", "winsize" },
+    --         }
+    --     end,
+    -- },
     { --快速添加函数注释，类注释
         "kkoomen/vim-doge" },
     { --自动补全cmd
