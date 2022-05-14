@@ -299,7 +299,10 @@ lvim.plugins = {
         end,
     },
     { -- latex编译
-        "lervag/vimtex" },
+        "lervag/vimtex",
+        ft = { "latex" }
+
+    },
     { --显示文件大纲
         "simrat39/symbols-outline.nvim",
         cmd = "SymbolsOutline",
