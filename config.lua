@@ -62,6 +62,10 @@ lvim.builtin.which_key.mappings["C"] = {
     "<cmd>DogeGenerate<cr>", "GenerateComment"
 }
 
+lvim.builtin.which_key.mappings["P"] = {
+    ":lua require'telescope'.extensions.project.project{}<CR>", "OpenProject"
+}
+
 lvim.builtin.which_key.mappings["R"] = {
     name = "+SnipRun",
     r = { "<cmd>SnipRun<cr>", "RunCode" },
@@ -393,6 +397,13 @@ lvim.plugins = {
                 }
             })
         end
+    },
+    {
+        "nvim-telescope/telescope-project.nvim",
+        event = "BufWinEnter",
+        setup = function()
+            require 'telescope'.load_extension('project')
+        end,
     },
     { "theHamsta/nvim-dap-virtual-text" },
     { "rcarriga/nvim-dap-ui" },
