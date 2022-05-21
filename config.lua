@@ -19,6 +19,11 @@ vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
+vim.opt.foldmethod = "expr" -- folding set to "expr" for treesitter based folding
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
+vim.opt.foldenable = false;
+vim.opt.foldlevel = 99
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
 -- lvim.colorscheme = "onedarker"
@@ -79,6 +84,7 @@ lvim.builtin.which_key.mappings["D"] = {
     l = { "<cmd>TodoLocList<cr>", "TodoLocList" },
     t = { "<cmd>TodoTelescope<cr>", "TodoTelescope" },
 }
+
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Diagnostics",
     t = { "<cmd>TroubleToggle<cr>", "trouble" },
@@ -340,7 +346,11 @@ lvim.plugins = {
         end
     },
     { --code action
-        "kosayoda/nvim-lightbulb" },
+        "kosayoda/nvim-lightbulb",
+        config = function()
+            require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+        end
+    },
     { --在第一行显示当前行所在的函数名，类名
         "romgrk/nvim-treesitter-context",
         config = function()
