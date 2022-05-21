@@ -62,14 +62,15 @@ lvim.keys.insert_mode["kj"] = false
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
 lvim.builtin.which_key.mappings["C"] = {
     "<cmd>DogeGenerate<cr>", "GenerateComment"
 }
 
-lvim.builtin.which_key.mappings["P"] = {
-    ":lua require'telescope'.extensions.project.project{}<CR>", "OpenProject"
-}
+-- lvim.builtin.which_key.mappings["P"] = {
+--     ":lua require'telescope'.extensions.project.project{}<CR>", "OpenProject"
+-- }
 
 lvim.builtin.which_key.mappings["R"] = {
     name = "+SnipRun",
@@ -408,13 +409,13 @@ lvim.plugins = {
             })
         end
     },
-    {
-        "nvim-telescope/telescope-project.nvim",
-        event = "BufWinEnter",
-        setup = function()
-            require 'telescope'.load_extension('project')
-        end,
-    },
+    -- {
+    --     "nvim-telescope/telescope-project.nvim",
+    --     event = "BufWinEnter",
+    --     setup = function()
+    --         vim.cmd [[packadd telescope.nvim]]
+    --     end,
+    -- },
     { "theHamsta/nvim-dap-virtual-text" },
     { "rcarriga/nvim-dap-ui" },
 }
