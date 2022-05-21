@@ -19,10 +19,8 @@ vim.opt.fileencoding = "utf-8" -- the encoding written to a file
 vim.opt.smartindent = true -- make indenting smarter again
 vim.opt.scrolloff = 8 -- is one of my fav
 vim.opt.sidescrolloff = 8
-vim.opt.foldmethod = "expr" -- folding set to "expr" for treesitter based folding
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
-vim.opt.foldenable = false;
-vim.opt.foldlevel = 99
+vim.opt.foldmethod = "manual" -- folding set to "expr" for treesitter based folding
+vim.opt.foldexpr = "" -- set to "nvim_treesitter#foldexpr()" for treesitter based folding
 
 lvim.log.level = "warn"
 lvim.format_on_save = true
