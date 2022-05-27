@@ -138,6 +138,7 @@ lvim.builtin.treesitter.ensure_installed = {
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.rainbow.enable = true
 
 -- generic LSP settings
 
@@ -329,13 +330,6 @@ lvim.plugins = {
     },
     { --彩虹括号
         "p00f/nvim-ts-rainbow",
-        config = function()
-            require("nvim-treesitter.configs").setup {
-                rainbow = {
-                    enable = true,
-                }
-            }
-        end
     },
     { --提示函数参数
         "ray-x/lsp_signature.nvim",
