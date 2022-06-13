@@ -116,9 +116,8 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.dap.active = true
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.dap.active = true
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
     "cpp",
@@ -308,7 +307,7 @@ lvim.plugins = {
     },
     { -- latex编译
         "lervag/vimtex",
-        ft = { "latex" }
+        ft = { "tex" }
 
     },
     { --显示文件大纲
@@ -321,13 +320,13 @@ lvim.plugins = {
         'michaelb/sniprun', run = 'bash ./install.sh' },
     { --使用增强.重复操作
         "tpope/vim-repeat" },
-    { --查找和替换
-        "windwp/nvim-spectre",
-        event = "BufRead",
-        config = function()
-            require("spectre").setup()
-        end,
-    },
+    -- { --查找和替换
+    --     "windwp/nvim-spectre",
+    --     event = "BufRead",
+    --     config = function()
+    --         require("spectre").setup()
+    --     end,
+    -- },
     { --彩虹括号
         "p00f/nvim-ts-rainbow",
     },
@@ -360,6 +359,28 @@ lvim.plugins = {
                         'class',
                         'function',
                         'method',
+                    },
+                },
+            }
+        end
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        config = function()
+            require 'nvim-treesitter.configs'.setup {
+                textobjects = {
+                    select = {
+                        enable = true,
+                        -- Automatically jump forward to textobj, similar to targets.vim
+                        lookahead = true,
+
+                        keymaps = {
+                            -- You can use the capture groups defined in textobjects.scm
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        },
                     },
                 },
             }
