@@ -3,7 +3,7 @@ extends c
 ##
 ## Preprocessor
 # setup
-snippet setup
+snippet main
 	#include <cstdio>
 	#include <fstream>
 	#include <iostream>
@@ -347,6 +347,29 @@ snippet split
 		string s = str.substr(start, size - start);
 		result.push_back(s);
 		return result;
+	}
+
+# LIS最长上升子序列
+snippet lis
+	for (int i = 1; i < n; i++) {
+		if (data[i] > lis[ans - 1]) {
+			lis[ans++] = data[i];
+		} else {
+			int t = lower_bound(lis, lis + ans, data[i]) - lis;
+			lis[t] = data[i];
+		}
+	}
+
+# LCS最长公共子序列
+snippet lcs
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (a[i] == b[j]) {
+				dp[i + 1][j + 1] = dp[i][j] + 1;
+			} else {
+				dp[i + 1][j + 1] = max(dp[i][j + 1], dp[i + 1][j]);
+			}
+		}
 	}
 
 

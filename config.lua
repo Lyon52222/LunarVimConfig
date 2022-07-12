@@ -406,7 +406,12 @@ lvim.plugins = {
         end
     },
     { --快速添加函数注释，类注释
-        "kkoomen/vim-doge" },
+        "kkoomen/vim-doge", run = ':call doge#install()'
+        -- config = function()
+        --     -- vim.g.doge_enable_mappings = 0
+        -- end,
+
+    },
     { --自动补全cmd
         "hrsh7th/cmp-cmdline",
         config = function()
