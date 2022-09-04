@@ -102,12 +102,6 @@ lvim.builtin.which_key.mappings["Q"] = {
     "<cmd>wa<cr><cmd>qa<cr>", "SaveAndQuitAll"
 }
 
-lvim.builtin.which_key.mappings["r"] = {
-    name = "+Replace",
-    a = { "<cmd>lua require('spectre').open()<cr>", "replace in all file" },
-    f = { "<cmd>lua require('spectre').open_file_search()<cr>", "replace in current file" },
-    w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "replace current word" }
-}
 
 
 -- TODO: User Config for predefined plugins
@@ -142,7 +136,8 @@ lvim.builtin.treesitter.rainbow.enable = true
 -- generic LSP settings
 
 -- ---@usage disable automatic installation of servers
-lvim.lsp.automatic_servers_installation = true
+lvim.lsp.installer.setup.automatic_installation = true
+-- lvim.lsp.automatic_servers_installation = true
 
 -- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
@@ -216,10 +211,18 @@ lvim.plugins = {
             vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
             vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
             -- place this in one of your configuration file(s)
-            vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-            vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-            vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
-            vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+            vim.api.nvim_set_keymap('n', 'f',
+                "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
+                , {})
+            vim.api.nvim_set_keymap('n', 'F',
+                "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
+                , {})
+            vim.api.nvim_set_keymap('o', 'f',
+                "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+                , {})
+            vim.api.nvim_set_keymap('o', 'F',
+                "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>"
+                , {})
             -- vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
             -- vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
             -- vim.api.nvim_set_keymap('n', '<leader>e', "<cmd> lua require'hop'.hint_words({ hint_position = require'hop.hint'.HintPosition.END })<cr>", {})
