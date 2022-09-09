@@ -33,6 +33,8 @@ require("luasnip.loaders.from_snipmate").lazy_load()
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["L"] = ":BufferLineCycleNext<cr>"
+lvim.keys.normal_mode['H'] = ":BufferLineCyclePre<cr>"
 lvim.keys.insert_mode["jj"] = false
 lvim.keys.insert_mode["jk"] = false
 lvim.keys.insert_mode["kj"] = false
