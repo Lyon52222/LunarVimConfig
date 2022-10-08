@@ -113,7 +113,7 @@ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
--- lvim.builtin.dap.active = true
+lvim.builtin.dap.active = true
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
     "cpp",
@@ -317,7 +317,9 @@ lvim.plugins = {
     },
     { --显示文件大纲
         "simrat39/symbols-outline.nvim",
-        cmd = "SymbolsOutline",
+        config = function()
+            require('symbols-outline').setup()
+        end
     },
     { --Snips,主要用于自动扩展使用
         "SirVer/ultisnips" },
@@ -339,13 +341,7 @@ lvim.plugins = {
         "ray-x/lsp_signature.nvim",
         event = "BufRead",
         config = function()
-            require "lsp_signature".setup()
-        end
-    },
-    { --code action
-        "kosayoda/nvim-lightbulb",
-        config = function()
-            require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
+            require "lsp_signature".on_attach()
         end
     },
     { --在第一行显示当前行所在的函数名，类名
