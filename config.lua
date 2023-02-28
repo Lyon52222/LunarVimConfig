@@ -110,10 +110,11 @@ lvim.builtin.which_key.mappings["Q"] = {
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+
+-- lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 -- lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.dap.active = true
+-- lvim.builtin.dap.active = true
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
     "cpp",
@@ -195,8 +196,8 @@ lvim.lsp.installer.setup.automatic_installation = true
 
 -- Additional Plugins
 lvim.plugins = {
-    { --tokyonight主题
-        "folke/tokyonight.nvim" },
+    -- { --tokyonight主题
+    --     "folke/tokyonight.nvim" },
     { --问题列表
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
@@ -344,6 +345,34 @@ lvim.plugins = {
             require "lsp_signature".on_attach()
         end
     },
+    -- { --增强<C-a> <C-x>
+    --     "monaqa/dial.nvim",
+    --     event = "BufRead",
+    --     config = function()
+    --         local dial = require "dial"
+    --         vim.cmd [[
+    --         nmap <C-a> <Plug>(dial-increment)
+    --           nmap <C-x> <Plug>(dial-decrement)
+    --           vmap <C-a> <Plug>(dial-increment)
+    --           vmap <C-x> <Plug>(dial-decrement)
+    --           vmap g<C-a> <Plug>(dial-increment-additional)
+    --           vmap g<C-x> <Plug>(dial-decrement-additional)
+    --         ]]
+
+    --         dial.augends["custom#boolean"] = dial.common.enum_cyclic {
+    --             name = "boolean",
+    --             strlist = { "true", "false" },
+    --         }
+    --         table.insert(dial.config.searchlist.normal, "custom#boolean")
+
+    --         -- For Languages which prefer True/False, e.g. python.
+    --         dial.augends["custom#Boolean"] = dial.common.enum_cyclic {
+    --             name = "Boolean",
+    --             strlist = { "True", "False" },
+    --         }
+    --         table.insert(dial.config.searchlist.normal, "custom#Boolean")
+    --     end,
+    -- },
     { --在第一行显示当前行所在的函数名，类名
         "romgrk/nvim-treesitter-context",
         config = function()
@@ -435,8 +464,8 @@ lvim.plugins = {
     --         vim.cmd [[packadd telescope.nvim]]
     --     end,
     -- },
-    { "theHamsta/nvim-dap-virtual-text" },
-    { "rcarriga/nvim-dap-ui" },
+    -- { "theHamsta/nvim-dap-virtual-text" },
+    -- { "rcarriga/nvim-dap-ui" },
 }
 
 
